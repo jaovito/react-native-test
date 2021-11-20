@@ -38,6 +38,8 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/jsx-no-bind': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
+    'no-unused-vars': 'off',
     camelcase: 'off',
   },
 };
