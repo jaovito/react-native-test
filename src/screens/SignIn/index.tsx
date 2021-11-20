@@ -16,7 +16,7 @@ export default function SignIn() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const { handleSaveToken, handleSaveContext } = useAuth();
+  const { handleSaveToken, handleSaveConteudo } = useAuth();
 
   const navigation = useNavigation<RouteNavigationProps>();
 
@@ -32,7 +32,7 @@ export default function SignIn() {
       });
 
       await handleSaveToken(data.conteudo[0].token);
-      await handleSaveContext(data.conteudo[0].contexto);
+      await handleSaveConteudo(data.conteudo);
     } catch (err) {
       Alert.alert(`Erro ao fazer a requisição: ${err}`);
     }

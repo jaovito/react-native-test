@@ -8,13 +8,14 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
+import { Conteudo } from '../components/SchoolCard';
 
 type AuthContextProps = {
+  conteudo: Conteudo[];
   token: string;
-  context: string;
   loading: boolean;
   isAuthenticated: boolean;
-  handleSaveContext: (contextValue: string) => Promise<void>;
+  handleSaveConteudo: (contextValue: Conteudo[]) => Promise<void>;
   handleSaveToken: (tokenValue: string) => Promise<void>;
 };
 
@@ -26,19 +27,18 @@ type AuthProviderProps = {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState('');
-  const [context, setContext] = useState('');
+  const [conteudo, setConteudo] = useState<Conteudo[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const isAuthenticated = !!context;
+  const isAuthenticated = !!token;
 
   useEffect(() => {
     async function handleGetInfos() {
       const tokenValue = await AsyncStorage.getItem('@token_test');
-      const contextValue = await AsyncStorage.getItem('@context_test');
-      console.log(tokenValue, contextValue);
+      const conteudoValue = await AsyncStorage.getItem('@conteudo_test');
 
-      if (tokenValue && contextValue) {
-        setContext(contextValue);
+      if (tokenValue && conteudoValue) {
+        setConteudo(JSON.parse(conteudoValue));
         setToken(tokenValue);
       }
 
@@ -50,14 +50,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const handleSaveToken = useCallback(async (tokenValue: string) => {
     setToken(tokenValue);
-    console.log(tokenValue);
     await AsyncStorage.setItem('@token_test', tokenValue);
   }, []);
 
-  const handleSaveContext = useCallback(async (contextValue: string) => {
-    setContext(contextValue);
-    console.log(contextValue);
-    await AsyncStorage.setItem('@context_test', contextValue);
+  const handleSaveConteudo = useCallback(async (content: Conteudo[]) => {
+    setConteudo(content);
+    await AsyncStorage.setItem('@conteudo_test', JSON.stringify(content));
   }, []);
 
   if (loading) {
@@ -67,10 +65,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   return (
     <AuthContext.Provider
       value={{
-        token,
-        context,
+        conteudo,
         handleSaveToken,
-        handleSaveContext,
+        token,
+        handleSaveConteudo,
         isAuthenticated,
         loading,
       }}

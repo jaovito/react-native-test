@@ -40,6 +40,7 @@ module.exports = {
     'react/jsx-no-bind': 'off',
     'react/jsx-no-constructed-context-values': 'off',
     'no-unused-vars': 'off',
+    'react/no-unstable-nested-components': 'off',
     camelcase: 'off',
   },
 };
