@@ -5,6 +5,7 @@ import { Entypo, FontAwesome5 } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import School, { Message } from '../screens/School';
 import theme from '../styles/theme';
+import Loading from '../components/Loading';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -55,7 +56,7 @@ export function TabsRoutes() {
 
       <Screen
         name="Writing"
-        component={School}
+        component={Loading}
         options={{
           tabBarIcon: ({ size, color, focused }) => (
             <Entypo name="folder-video" size={size} color={color} />
@@ -65,7 +66,7 @@ export function TabsRoutes() {
 
       <Screen
         name="Menu"
-        component={School}
+        component={Loading}
         options={{
           tabBarIcon: ({ size, color, focused }) => (
             <FontAwesome5 name="user-alt" size={size} color={color} />
@@ -75,7 +76,7 @@ export function TabsRoutes() {
 
       <Screen
         name="Arriving"
-        component={School}
+        component={Loading}
         options={{
           tabBarIcon: ({ size, color, focused }) => (
             <FontAwesome5 name="user-alt" size={size} color={color} />
@@ -85,7 +86,7 @@ export function TabsRoutes() {
 
       <Screen
         name="Profile"
-        component={School}
+        component={Loading}
         options={{
           tabBarIcon: ({ size, color, focused }) => (
             <FontAwesome5 name="user-alt" size={size} color={color} />

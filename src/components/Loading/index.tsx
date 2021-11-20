@@ -9,7 +9,7 @@ type Props = {
 export default function Loading({ image }: Props) {
   return (
     <Container>
-      <SchoolImage resizeMode="contain" source={{ uri: image }} />
+      {image && <SchoolImage resizeMode="contain" source={{ uri: image }} />}
 
       <LoadingIndicator color={theme.colors.text.black} size="large" />
     </Container>
