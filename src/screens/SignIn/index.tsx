@@ -15,12 +15,14 @@ import { Content, Form, Title } from './styles';
 export default function SignIn() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { handleSaveToken, handleSaveConteudo } = useAuth();
 
   const navigation = useNavigation<RouteNavigationProps>();
 
   async function handleLogin() {
+    setLoading(true);
     try {
       const { data } = await api.post('Acesso/login', {
         login,
@@ -31,10 +33,12 @@ export default function SignIn() {
         idDispositivo: 'teste-mobile',
       });
 
-      await handleSaveToken(data.conteudo[0].token);
       await handleSaveConteudo(data.conteudo);
+      setLoading(false);
+      await handleSaveToken(data.conteudo[0].token);
     } catch (err) {
       Alert.alert(`Erro ao fazer a requisição: ${err}`);
+      setLoading(false);
     }
   }
 
@@ -57,7 +61,7 @@ export default function SignIn() {
               setPasswordValue={setPassword}
             />
 
-            <Button onPress={handleLogin} title="Entrar" />
+            <Button loading={loading} onPress={handleLogin} title="Entrar" />
           </Form>
         </Content>
 

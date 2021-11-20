@@ -8,15 +8,18 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
+import axios from 'axios';
 import { Conteudo } from '../components/SchoolCard';
+import { api } from '../services/api';
 
 type AuthContextProps = {
   conteudo: Conteudo[];
-  token: string;
+  token: string | null;
   loading: boolean;
   isAuthenticated: boolean;
   handleSaveConteudo: (contextValue: Conteudo[]) => Promise<void>;
   handleSaveToken: (tokenValue: string) => Promise<void>;
+  signOut: () => void;
 };
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -26,7 +29,7 @@ type AuthProviderProps = {
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState<string | null>(null);
   const [conteudo, setConteudo] = useState<Conteudo[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,6 +43,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (tokenValue && conteudoValue) {
         setConteudo(JSON.parse(conteudoValue));
         setToken(tokenValue);
+
+        axios.defaults.headers.common['X-Authorization'] = tokenValue;
       }
 
       setLoading(false);
@@ -51,11 +56,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const handleSaveToken = useCallback(async (tokenValue: string) => {
     setToken(tokenValue);
     await AsyncStorage.setItem('@token_test', tokenValue);
+    axios.defaults.headers.common['X-Authorization'] = tokenValue;
   }, []);
 
   const handleSaveConteudo = useCallback(async (content: Conteudo[]) => {
     setConteudo(content);
     await AsyncStorage.setItem('@conteudo_test', JSON.stringify(content));
+  }, []);
+
+  const signOut = useCallback(async () => {
+    await AsyncStorage.removeItem('@conteudo_test');
+    await AsyncStorage.removeItem('@token_test');
+    setConteudo([]);
+    setToken(null);
   }, []);
 
   if (loading) {
@@ -71,6 +84,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         handleSaveConteudo,
         isAuthenticated,
         loading,
+        signOut,
       }}
     >
       {children}

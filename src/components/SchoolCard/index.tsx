@@ -1,5 +1,6 @@
 import { Entypo } from '@expo/vector-icons';
 import * as React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 import theme from '../../styles/theme';
 import {
   Container,
@@ -17,13 +18,13 @@ export type Conteudo = {
   token: string;
 };
 
-type Props = {
+type Props = TouchableOpacityProps & {
   data: Conteudo;
 };
 
-export default function SchoolCard({ data }: Props) {
+export default function SchoolCard({ data, ...rest }: Props) {
   return (
-    <Container activeOpacity={0.7}>
+    <Container activeOpacity={0.7} {...rest}>
       <Image source={{ uri: data.urlLogoContexto }} resizeMode="cover" />
 
       <SchoolInfoContainer>
