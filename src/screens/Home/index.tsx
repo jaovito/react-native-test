@@ -38,6 +38,7 @@ export default function Home() {
         placeholder="Busca"
         value={search}
         onChangeText={handleChangeSearch}
+        autoCorrect={false}
       />
 
       <FlatList

@@ -23,7 +23,7 @@ type Props = {
 
 export default function SchoolCard({ data }: Props) {
   return (
-    <Container>
+    <Container activeOpacity={0.7}>
       <Image source={{ uri: data.urlLogoContexto }} resizeMode="cover" />
 
       <SchoolInfoContainer>
