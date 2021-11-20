@@ -36,6 +36,8 @@ module.exports = {
     'react/style-prop-object': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'react/jsx-no-bind': 'off',
     camelcase: 'off',
   },
 };
