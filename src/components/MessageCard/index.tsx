@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import MessageHeader from '../MessageHeader';
-import { Conteudo } from '../SchoolCard';
 import { Container, Content } from './styles';
 import { Message } from '../../screens/School';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useRoute } from '@react-navigation/core';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FlatList } from 'react-native';
 import { Container, Main } from './styles';
 import SchoolHeader from '../../components/SchoolHeader';

@@ -10,7 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
 import axios from 'axios';
 import { Conteudo } from '../components/SchoolCard';
-import { api } from '../services/api';
 
 type AuthContextProps = {
   conteudo: Conteudo[];
