@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { Container, Image, SchoolName, Main } from './styles';
 
-export default function SchoolHeader() {
+type Props = {
+  title: string;
+  image: string;
+};
+
+export default function SchoolHeader({ title, image }: Props) {
   return (
     <Container
       style={{
@@ -14,13 +19,10 @@ export default function SchoolHeader() {
         },
       }}
     >
-      <Image
-        resizeMode="cover"
-        source={{ uri: 'http://github.com/jaovito.png' }}
-      />
+      <Image resizeMode="cover" source={{ uri: image }} />
 
       <Main>
-        <SchoolName>Marshmallow</SchoolName>
+        <SchoolName>{title}</SchoolName>
       </Main>
     </Container>
   );

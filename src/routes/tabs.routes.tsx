@@ -58,8 +58,9 @@ export function TabsRoutes() {
         name="Writing"
         component={Loading}
         options={{
+          tabBarLabel: 'Escrever',
           tabBarIcon: ({ size, color, focused }) => (
-            <Entypo name="folder-video" size={size} color={color} />
+            <Entypo name="edit" size={size} color={color} />
           ),
         }}
       />
@@ -68,8 +69,9 @@ export function TabsRoutes() {
         name="Menu"
         component={Loading}
         options={{
+          tabBarLabel: 'Menu',
           tabBarIcon: ({ size, color, focused }) => (
-            <FontAwesome5 name="user-alt" size={size} color={color} />
+            <Entypo name="grid" size={size} color={color} />
           ),
         }}
       />
@@ -78,8 +80,9 @@ export function TabsRoutes() {
         name="Arriving"
         component={Loading}
         options={{
+          tabBarLabel: 'Chegando',
           tabBarIcon: ({ size, color, focused }) => (
-            <FontAwesome5 name="user-alt" size={size} color={color} />
+            <FontAwesome5 name="car-alt" size={size} color={color} />
           ),
         }}
       />
@@ -88,6 +91,7 @@ export function TabsRoutes() {
         name="Profile"
         component={Loading}
         options={{
+          tabBarLabel: 'Perfil',
           tabBarIcon: ({ size, color, focused }) => (
             <FontAwesome5 name="user-alt" size={size} color={color} />
           ),
