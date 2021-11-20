@@ -7,6 +7,7 @@ const theme = {
     text: {
       white: '#E8F5F6',
       black: '#606060',
+      blue: '#0DAADF',
     },
   },
 };

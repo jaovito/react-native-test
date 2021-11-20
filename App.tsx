@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
+import SignIn from './src/screens/SignIn';
 import theme from './src/styles/theme';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <SignIn />
       <StatusBar style="auto" />
     </ThemeProvider>
   );
