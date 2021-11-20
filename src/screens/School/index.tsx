@@ -24,7 +24,6 @@ type RouteParams = {
 export default function School() {
   const { params } = useRoute();
   const route = params as RouteParams;
-  console.log(route.allMessages);
 
   const [messages, setMessages] = useState<Message[]>(route.allMessages);
 
